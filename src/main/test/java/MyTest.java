@@ -8,7 +8,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author wsf
@@ -16,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
-//@Transactional
 public class MyTest {
 
     @Autowired
@@ -27,22 +25,38 @@ public class MyTest {
 
     @Test
     public void insertTest(){
-//        User user = new User();
-//        user.setName("小五");
-//        user.setSex("女");
-//        user.setAge(25);
-//        int i = this.userMapper.insert(user);
+        try {
+            this.userMapper.begin();
 
-        UserOrder userOrder = new UserOrder();
-        userOrder.setUserId(928072310500495360L);
-        userOrder.setOrderNo("123456333");
-        int i = this.userOrderMapper.insert(userOrder);
+            User user = new User();
+            user.setName("小五4");
+            user.setSex("女");
+            user.setAge(25);
+            for (int i = 0; i < 5; i++) {
+                this.userMapper.insert(user);
+            }
 
-        userOrder = new UserOrder();
-        userOrder.setUserId(928072310500495360L);
-        userOrder.setOrderNo("abcdefccc");
-        i = this.userOrderMapper.insert(userOrder);
 
-        int j = 1/0;
+            UserOrder userOrder = new UserOrder();
+            userOrder.setUserId(928906953642610688L);
+            userOrder.setOrderNo("aaa");
+            this.userOrderMapper.insert(userOrder);
+
+            userOrder = new UserOrder();
+            userOrder.setUserId(928906954368225280L);
+            userOrder.setOrderNo("bbb");
+            this.userOrderMapper.insert(userOrder);
+
+            userOrder = new UserOrder();
+            userOrder.setUserId(928906954410168320L);
+            userOrder.setOrderNo("ccc");
+            this.userOrderMapper.insert(userOrder);
+
+            int j = 1/0;
+            this.userMapper.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            this.userMapper.rollback();
+        }
     }
 }

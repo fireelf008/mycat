@@ -11,9 +11,6 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
     <insert id="insert" parameterType="com.wsf.mycat.entity.model.UserOrder">
-        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
-            SELECT LAST_INSERT_ID()
-        </selectKey>
         insert into tb_user_order (id, user_id, order_no)
         values (next value for MYCATSEQ_GLOBAL, #{userId,jdbcType=BIGINT}, #{orderNo,jdbcType=VARCHAR})
     </insert>

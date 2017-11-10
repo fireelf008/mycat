@@ -13,4 +13,10 @@ public interface UserMapper {
     List<User> selectAll();
 
     int updateByPrimaryKey(User record);
+
+    void begin();
+
+    void commit();
+
+    void rollback();
 }
