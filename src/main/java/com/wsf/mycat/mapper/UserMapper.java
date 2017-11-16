@@ -16,6 +16,8 @@ public interface UserMapper {
 
     void begin();
 
+    void xa();
+
     void commit();
 
     void rollback();

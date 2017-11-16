@@ -27,32 +27,32 @@ public class MyTest {
     public void insertTest(){
         try {
             this.userMapper.begin();
+//            this.userMapper.xa();
 
             User user = new User();
             user.setName("小五4");
             user.setSex("女");
             user.setAge(25);
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < 1000000; i++) {
                 this.userMapper.insert(user);
             }
 
+//            UserOrder userOrder = new UserOrder();
+//            userOrder.setUserId(929980008015990784L);
+//            userOrder.setOrderNo("aaa");
+//            this.userOrderMapper.insert(userOrder);
+//
+//            userOrder = new UserOrder();
+//            userOrder.setUserId(929980008221511680L);
+//            userOrder.setOrderNo("bbb");
+//            this.userOrderMapper.insert(userOrder);
+//
+//            userOrder = new UserOrder();
+//            userOrder.setUserId(929980008208928768L);
+//            userOrder.setOrderNo("ccc");
+//            this.userOrderMapper.insert(userOrder);
 
-            UserOrder userOrder = new UserOrder();
-            userOrder.setUserId(928906953642610688L);
-            userOrder.setOrderNo("aaa");
-            this.userOrderMapper.insert(userOrder);
-
-            userOrder = new UserOrder();
-            userOrder.setUserId(928906954368225280L);
-            userOrder.setOrderNo("bbb");
-            this.userOrderMapper.insert(userOrder);
-
-            userOrder = new UserOrder();
-            userOrder.setUserId(928906954410168320L);
-            userOrder.setOrderNo("ccc");
-            this.userOrderMapper.insert(userOrder);
-
-            int j = 1/0;
+//            int j = 1/0;
             this.userMapper.commit();
         } catch (Exception e) {
             e.printStackTrace();

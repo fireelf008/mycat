@@ -38,6 +38,10 @@
     set autocommit = 0
   </select>
 
+  <select id="xa" >
+      set xa = on
+  </select>
+
   <select id="commit">
     commit
   </select>
